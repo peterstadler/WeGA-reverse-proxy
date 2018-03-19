@@ -7,6 +7,8 @@ ARG AuthLDAPURL
 ARG AuthLDAPBindDN
 ARG AuthLDAPBindPassword
 
+RUN apt-get update && apt-get --yes --force-yes --no-install-recommends install subversion ant
+
 COPY entrypoint.sh /my-docker-entrypoint.sh
 RUN chmod 755 /my-docker-entrypoint.sh
 
