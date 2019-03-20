@@ -8,8 +8,8 @@ LoadModule  proxy_module         modules/mod_proxy.so
 LoadModule  proxy_http_module    modules/mod_proxy_http.so
 AllowEncodedSlashes NoDecode
 <Location />
-    ProxyPass  http://existdb:8080/
-    ProxyPassReverse  http://existdb:8080/
+    ProxyPass ${EXISTDB}
+    ProxyPassReverse ${EXISTDB}
     RequestHeader unset Authorization
     AuthName "WeGA-interne Seite nur für Mitarbeiter: Login mit Nutzernamen und Passwort"
     AuthBasicProvider ldap
@@ -22,8 +22,8 @@ AllowEncodedSlashes NoDecode
     Require ldap-group CN=wega,CN=Users,DC=muwi,DC=hfm-detmold,DC=de
 </Location>
 <Location "/digilib">
-    ProxyPass  http://digilib:8080 nocanon
-    ProxyPassReverse  http://digilib:8080
+    ProxyPass ${DIGILIB} nocanon
+    ProxyPassReverse ${DIGILIB}
     AuthName "WeGA-interne Seite nur für Mitarbeiter: Login mit Nutzernamen und Passwort"
     AuthBasicProvider ldap
     AuthType Basic
