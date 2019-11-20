@@ -19,7 +19,10 @@ AllowEncodedSlashes NoDecode
     AuthLDAPURL ${AuthLDAPURL}
     AuthLDAPBindDN "${AuthLDAPBindDN}" 
     AuthLDAPBindPassword "${AuthLDAPBindPassword}" 
-    Require ldap-group CN=wega,CN=Users,DC=muwi,DC=hfm-detmold,DC=de
+    <RequireAny>
+        Require ldap-group CN=wega,CN=Users,DC=muwi,DC=hfm-detmold,DC=de
+        Require ldap-group CN=wega-guests,CN=Users,DC=muwi,DC=hfm-detmold,DC=de
+    </RequireAny>
 </Location>
 EOF
 
