@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# add our existdb and digilib locations to the httpd config
+# add our existdb location to the httpd config
 cat <<EOF >> /usr/local/apache2/conf/httpd.conf
 LoadModule	ldap_module          modules/mod_ldap.so
 LoadModule	authnz_ldap_module   modules/mod_authnz_ldap.so
@@ -11,19 +11,6 @@ AllowEncodedSlashes NoDecode
     ProxyPass ${EXISTDB}
     ProxyPassReverse ${EXISTDB}
     RequestHeader unset Authorization
-    AuthName "WeGA-interne Seite nur für Mitarbeiter: Login mit Nutzernamen und Passwort"
-    AuthBasicProvider ldap
-    AuthType Basic
-    AuthLDAPGroupAttribute member
-    AuthLDAPGroupAttributeIsDN on
-    AuthLDAPURL ${AuthLDAPURL}
-    AuthLDAPBindDN "${AuthLDAPBindDN}" 
-    AuthLDAPBindPassword "${AuthLDAPBindPassword}" 
-    Require ldap-group CN=wega,CN=Users,DC=muwi,DC=hfm-detmold,DC=de
-</Location>
-<Location "/digilib">
-    ProxyPass ${DIGILIB} nocanon
-    ProxyPassReverse ${DIGILIB}
     AuthName "WeGA-interne Seite nur für Mitarbeiter: Login mit Nutzernamen und Passwort"
     AuthBasicProvider ldap
     AuthType Basic
